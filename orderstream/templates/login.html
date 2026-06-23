@@ -1,0 +1,31 @@
+<main id="page-login" class="page min-h-screen flex items-center justify-center">
+  <div class="bg-surface-container-lowest rounded-2xl shadow-lg border border-outline-variant p-xl w-full max-w-md">
+    <div class="text-center mb-lg">
+      <div class="w-14 h-14 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-md">
+        <span class="material-symbols-outlined text-primary text-[28px]">shopping_cart</span>
+      </div>
+      <h1 class="text-headline-md text-on-surface">OrderStream</h1>
+      <p class="text-body-sm text-on-surface-variant mt-xs">Merchant Portal — Sign in to continue</p>
+    </div>
+    <form id="login-form" class="space-y-md">
+      <div>
+        <label class="block text-label-md text-on-surface mb-xs" for="login-username">Username</label>
+        <input id="login-username" type="text" autocomplete="username"
+               class="w-full h-11 border border-outline-variant rounded-xl px-md text-body-sm bg-surface focus:ring-2 focus:ring-primary outline-none"
+               placeholder="admin" required />
+      </div>
+      <div>
+        <label class="block text-label-md text-on-surface mb-xs" for="login-password">Password</label>
+        <input id="login-password" type="password" autocomplete="current-password"
+               class="w-full h-11 border border-outline-variant rounded-xl px-md text-body-sm bg-surface focus:ring-2 focus:ring-primary outline-none"
+               placeholder="••••••••" required />
+      </div>
+      <p id="login-error" class="text-label-sm text-error hidden"></p>
+      <button type="submit" id="login-submit"
+              class="w-full h-11 bg-primary text-on-primary text-label-md rounded-xl hover:bg-primary-600 transition-colors flex items-center justify-center gap-sm">
+        <span>Sign In</span>
+      </button>
+    </form>
+    <p class="text-center text-[11px] text-outline mt-lg">Dev default: admin / admin123</p>
+  </div>
+</main>

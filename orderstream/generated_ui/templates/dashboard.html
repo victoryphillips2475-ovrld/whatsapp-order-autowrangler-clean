@@ -1,0 +1,240 @@
+<main id="page-dashboard" class="page active">
+  <!-- Desktop layout -->
+  <div class="hidden lg:block ml-64 mt-16 p-lg min-h-[calc(100vh-4rem)]">
+    <!-- Dashboard Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-xl">
+      <div>
+        <h2 class="text-headline-lg text-on-surface">Orders</h2>
+        <p class="text-body-md text-on-surface-variant">Manage and track your active incoming commerce requests.</p>
+      </div>
+      <button class="h-11 px-lg flex items-center gap-xs bg-secondary-50 text-secondary-600 text-label-md rounded-xl hover:bg-secondary-100 active:scale-95 transition-all export-btn">
+        <span class="material-symbols-outlined text-[20px]">ios_share</span>
+        Export
+      </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="bg-surface-container-lowest rounded-xl p-md shadow-sm mb-lg flex flex-wrap items-center gap-md">
+      <div class="flex items-center gap-sm bg-gray-50 border border-outline-variant rounded-lg px-sm py-xs relative" id="date-filter-container">
+        <span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_today</span>
+        <span class="text-label-md text-on-surface">Today, Oct 24</span>
+        <span class="material-symbols-outlined text-[18px] text-on-surface-variant cursor-pointer">expand_more</span>
+        <!-- Date Range Picker Dropdown -->
+        <div id="date-dropdown" class="absolute left-0 top-full mt-2 w-64 bg-surface-container-lowest rounded-xl shadow-lg border border-outline-variant hidden z-40 p-md">
+          <p class="text-label-sm text-on-surface mb-sm">Select date range</p>
+          <div class="space-y-sm">
+            <button class="w-full px-md py-sm text-left text-label-sm hover:bg-surface-container-high rounded-lg">Today</button>
+            <button class="w-full px-md py-sm text-left text-label-sm hover:bg-surface-container-high rounded-lg">Yesterday</button>
+            <button class="w-full px-md py-sm text-left text-label-sm hover:bg-surface-container-high rounded-lg">Last 7 days</button>
+            <button class="w-full px-md py-sm text-left text-label-sm hover:bg-surface-container-high rounded-lg">Last 30 days</button>
+            <button class="w-full px-md py-sm text-left text-label-sm hover:bg-surface-container-high rounded-lg">This month</button>
+            <button class="w-full px-md py-sm text-left text-label-sm hover:bg-surface-container-high rounded-lg">Last month</button>
+          </div>
+          <div class="mt-sm pt-sm border-t border-outline-variant">
+            <div class="flex gap-sm">
+              <input type="date" class="flex-1 h-9 text-label-sm border border-outline-variant rounded-lg px-sm bg-surface" />
+              <input type="date" class="flex-1 h-9 text-label-sm border border-outline-variant rounded-lg px-sm bg-surface" />
+            </div>
+            <button class="w-full mt-sm h-9 bg-primary text-on-primary text-label-sm rounded-lg">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-sm bg-gray-50 border border-outline-variant rounded-lg px-sm py-xs relative" id="status-filter-container">
+        <span class="material-symbols-outlined text-[18px] text-on-surface-variant">filter_list</span>
+        <span class="text-label-md text-on-surface">Status: All Orders</span>
+        <span class="material-symbols-outlined text-[18px] text-on-surface-variant cursor-pointer">expand_more</span>
+        <!-- Status Filter Dropdown -->
+        <div id="status-dropdown" class="absolute left-0 top-full mt-2 w-48 bg-surface-container-lowest rounded-xl shadow-lg border border-outline-variant hidden z-40 p-sm">
+          <div class="space-y-xs">
+            <label class="flex items-center gap-sm p-sm hover:bg-surface-container-high rounded-lg cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-outline text-primary" checked />
+              <span class="text-label-sm text-on-surface">All Orders</span>
+            </label>
+            <label class="flex items-center gap-sm p-sm hover:bg-surface-container-high rounded-lg cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-outline text-primary" />
+              <span class="text-label-sm text-on-surface">Pending</span>
+            </label>
+            <label class="flex items-center gap-sm p-sm hover:bg-surface-container-high rounded-lg cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-outline text-primary" />
+              <span class="text-label-sm text-on-surface">Processing</span>
+            </label>
+            <label class="flex items-center gap-sm p-sm hover:bg-surface-container-high rounded-lg cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-outline text-primary" />
+              <span class="text-label-sm text-on-surface">Ready</span>
+            </label>
+            <label class="flex items-center gap-sm p-sm hover:bg-surface-container-high rounded-lg cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-outline text-primary" />
+              <span class="text-label-sm text-on-surface">Fulfilled</span>
+            </label>
+          </div>
+          <div class="mt-sm pt-sm border-t border-outline-variant flex justify-end gap-sm">
+            <button class="h-8 px-md text-label-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg">Clear</button>
+            <button class="h-8 px-md bg-primary text-on-primary text-label-sm rounded-lg">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div class="h-8 w-[1px] bg-outline-variant mx-xs hidden md:block"></div>
+      <div class="relative flex-1 min-w-[200px]">
+        <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+        <input id="desktop-search" class="w-full h-9 bg-transparent border border-outline-variant rounded-lg pl-xl pr-sm text-body-sm focus:ring-1 focus:ring-primary outline-none"
+               placeholder="Filter by ID or customer..." type="text"/>
+      </div>
+      <button class="text-primary text-label-md hover:underline px-xs">Clear all</button>
+    </div>
+
+    <!-- Order Table -->
+    <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-surface-container bg-surface-container-low/50">
+              <th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Order ID</th>
+              <th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Customer</th>
+              <th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Items</th>
+              <th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Amount</th>
+              <th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+              <th class="px-lg py-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-surface-container">
+            <tr class="hover:bg-primary-50/30 transition-colors group" data-order-id="#ORD-9421">
+              <td class="px-lg py-md"><span class="text-label-md text-primary group-hover:underline cursor-pointer" data-action="open-order-drawer" data-order-id="#ORD-9421" data-customer="Jane Doe" data-amount="$142.00" data-items="3x Wireless Earbuds" data-status="Processing">#ORD-9421</span><p class="text-[10px] text-outline">10:42 AM</p></td>
+              <td class="px-lg py-md"><div class="flex items-center gap-sm"><div class="w-8 h-8 rounded-full bg-secondary-100 flex items-center justify-center text-secondary-600 font-bold text-xs">JD</div><span class="text-body-sm text-on-surface">Jane Doe</span></div></td>
+              <td class="px-lg py-md"><span class="text-body-sm text-on-surface">3x Wireless Earbuds</span><p class="text-[10px] text-outline">+2 other items</p></td>
+              <td class="px-lg py-md"><span class="text-label-md text-on-surface">$142.00</span></td>
+              <td class="px-lg py-md"><span class="px-sm py-xs rounded-full text-[11px] font-bold uppercase tracking-wide bg-warning-bg text-warning">Processing</span></td>
+              <td class="px-lg py-md text-right"><button class="p-xs rounded-lg hover:bg-surface-container-high transition-colors" data-action="toggle-row-action-menu" data-order-id="#ORD-9421"><span class="material-symbols-outlined text-outline">more_vert</span></button></td>
+            </tr>
+            <tr class="hover:bg-primary-50/30 transition-colors group" data-order-id="#ORD-9418">
+              <td class="px-lg py-md"><span class="text-label-md text-primary group-hover:underline cursor-pointer" data-action="open-order-drawer" data-order-id="#ORD-9418" data-customer="Marcus Kane" data-amount="$299.99" data-items="1x Smart Watch Pro" data-status="Ready">#ORD-9418</span><p class="text-[10px] text-outline">09:15 AM</p></td>
+              <td class="px-lg py-md"><div class="flex items-center gap-sm"><div class="w-8 h-8 rounded-full bg-tertiary flex items-center justify-center text-tertiary font-bold text-xs">MK</div><span class="text-body-sm text-on-surface">Marcus Kane</span></div></td>
+              <td class="px-lg py-md"><span class="text-body-sm text-on-surface">1x Smart Watch Pro</span></td>
+              <td class="px-lg py-md"><span class="text-label-md text-on-surface">$299.99</span></td>
+              <td class="px-lg py-md"><span class="px-sm py-xs rounded-full text-[11px] font-bold uppercase tracking-wide bg-success-bg text-success">Ready</span></td>
+              <td class="px-lg py-md text-right"><button class="p-xs rounded-lg hover:bg-surface-container-high transition-colors" data-action="toggle-row-action-menu" data-order-id="#ORD-9418"><span class="material-symbols-outlined text-outline">more_vert</span></button></td>
+            </tr>
+            <tr class="hover:bg-primary-50/30 transition-colors group" data-order-id="#ORD-9415">
+              <td class="px-lg py-md"><span class="text-label-md text-primary group-hover:underline cursor-pointer" data-action="open-order-drawer" data-order-id="#ORD-9415" data-customer="Elena Lopez" data-amount="$85.50" data-items="2x Leather Bags" data-status="Pending">#ORD-9415</span><p class="text-[10px] text-outline">08:30 AM</p></td>
+              <td class="px-lg py-md"><div class="flex items-center gap-sm"><div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary font-bold text-xs">EL</div><span class="text-body-sm text-on-surface">Elena Lopez</span></div></td>
+              <td class="px-lg py-md"><span class="text-body-sm text-on-surface">2x Leather Bags</span><p class="text-[10px] text-outline">Pre-order item</p></td>
+              <td class="px-lg py-md"><span class="text-label-md text-on-surface">$85.50</span></td>
+              <td class="px-lg py-md"><span class="px-sm py-xs rounded-full text-[11px] font-bold uppercase tracking-wide bg-warning-bg text-warning">Pending</span></td>
+              <td class="px-lg py-md text-right"><button class="p-xs rounded-lg hover:bg-surface-container-high transition-colors" data-action="toggle-row-action-menu" data-order-id="#ORD-9415"><span class="material-symbols-outlined text-outline">more_vert</span></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Pagination -->
+      <div class="px-lg py-md flex items-center justify-between border-t border-surface-container bg-surface-container-low/20">
+        <p class="text-label-sm text-on-surface-variant">Showing 1-5 of 142 orders</p>
+        <div class="flex items-center gap-xs">
+          <button class="p-xs border border-outline-variant rounded-lg text-on-surface-variant hover:bg-gray-50 disabled"><span class="material-symbols-outlined">chevron_left</span></button>
+          <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary text-label-md">1</button>
+          <button class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-gray-50 text-label-md">2</button>
+          <button class="w-8 h-8 flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-gray-50 text-label-md">3</button>
+          <button class="p-xs border border-outline-variant rounded-lg text-on-surface-variant hover:bg-gray-50"><span class="material-symbols-outlined">chevron_right</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Insight Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+      <div class="bg-primary-container p-lg rounded-xl text-on-primary-container flex justify-between items-start">
+        <div>
+          <p class="text-label-sm uppercase tracking-widest opacity-80 mb-xs">Today's Revenue</p>
+          <h3 class="text-headline-lg font-black">$4,290.50</h3>
+          <p class="text-body-sm mt-md flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">trending_up</span>+12% from yesterday</p>
+        </div>
+        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"><span class="material-symbols-outlined text-[28px]">payments</span></div>
+      </div>
+      <div class="bg-surface-container-highest p-lg rounded-xl flex justify-between items-start border border-surface-container">
+        <div>
+          <p class="text-label-sm uppercase tracking-widest text-on-surface-variant mb-xs">Processing Time</p>
+          <h3 class="text-headline-lg font-black text-on-surface">1.2 hrs</h3>
+          <p class="text-body-sm mt-md text-on-surface-variant flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">speed</span>Top 5% of merchants</p>
+        </div>
+        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[28px]">timer</span></div>
+      </div>
+      <div class="bg-white p-lg rounded-xl border-2 border-dashed border-outline-variant flex items-center justify-center text-center group cursor-pointer hover:border-primary hover:bg-primary-50 transition-all" data-action="open-metric-modal">
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mb-sm group-hover:bg-primary group-hover:text-white transition-colors"><span class="material-symbols-outlined">add_chart</span></div>
+          <p class="text-label-md text-on-surface">Add Metric Widget</p>
+          <p class="text-label-sm text-on-surface-variant">Customize your dashboard</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile layout: orders list as cards (<lg) -->
+    <div class="lg:hidden pt-20 pb-24 px-4 space-y-lg max-w-md mx-auto">
+      <div class="flex gap-2 overflow-x-auto scroll-hide pb-2 pt-4">
+        <button class="filter-chip bg-primary text-on-primary px-4 py-2 rounded-full text-label-md shadow-sm whitespace-nowrap" data-filter="pending">Pending (<span id="pending-count">12</span>)</button>
+        <button class="filter-chip bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full text-label-md whitespace-nowrap" data-filter="processing">Processing</button>
+        <button class="filter-chip bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full text-label-md whitespace-nowrap" data-filter="ready">Ready</button>
+      </div>
+      <div class="space-y-md">
+        <!-- Order Card 1 -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-variant p-md" data-order-id="ORD-9412">
+          <div class="flex justify-between items-start mb-md">
+            <div>
+              <span class="text-label-sm text-outline uppercase tracking-wider">#ORD-9412</span>
+              <h3 class="text-headline-md">Sarah Chen</h3>
+            </div>
+            <span class="bg-warning-bg text-warning border border-warning/20 px-2.5 py-0.5 rounded-full text-label-sm">Pending</span>
+          </div>
+          <div class="text-body-sm text-on-surface-variant mb-md">3x Wireless Earbuds +2 other items</div>
+          <div class="border-t border-surface-variant pt-md flex justify-between items-center">
+            <div>
+              <span class="text-label-sm text-outline block">Total Amount</span>
+              <span class="text-headline-md text-primary">$142.00</span>
+            </div>
+            <button class="bg-primary text-on-primary h-11 px-6 rounded-xl text-label-md active:scale-95 transition-transform shadow-sm flex items-center gap-2 confirm-btn">
+              <span>Confirm</span>
+              <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            </button>
+          </div>
+        </div>
+        <!-- Order Card 2 -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-variant p-md" data-order-id="ORD-9418">
+          <div class="flex justify-between items-start mb-md">
+            <div>
+              <span class="text-label-sm text-outline uppercase tracking-wider">#ORD-9418</span>
+              <h3 class="text-headline-md">Marcus Kane</h3>
+            </div>
+            <span class="bg-success-bg text-success border border-success/20 px-2.5 py-0.5 rounded-full text-label-sm">Ready</span>
+          </div>
+          <div class="text-body-sm text-on-surface-variant mb-md">1x Smart Watch Pro</div>
+          <div class="border-t border-surface-variant pt-md flex justify-between items-center">
+            <div>
+              <span class="text-label-sm text-outline block">Total Amount</span>
+              <span class="text-headline-md text-primary">$299.99</span>
+            </div>
+            <button class="bg-primary text-on-primary h-11 px-6 rounded-xl text-label-md active:scale-95 transition-transform shadow-sm flex items-center gap-2 confirm-btn">
+              <span>Confirm</span>
+              <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            </button>
+          </div>
+        </div>
+        <!-- Order Card 3 -->
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-variant p-md" data-order-id="ORD-9418">
+          <div class="flex justify-between items-start mb-md">
+            <div>
+              <span class="text-label-sm text-outline uppercase tracking-wider">#ORD-9415</span>
+              <h3 class="text-headline-md">Elena Lopez</h3>
+            </div>
+            <span class="bg-warning-bg text-warning border border-warning/20 px-2.5 py-0.5 rounded-full text-label-sm">Pending</span>
+          </div>
+          <div class="text-body-sm text-on-surface-variant mb-md">2x Leather Bags (Pre-order)</div>
+          <div class="border-t border-surface-variant pt-md flex justify-between items-center">
+            <div>
+              <span class="text-label-sm text-outline block">Total Amount</span>
+              <span class="text-headline-md text-primary">$85.50</span>
+            </div>
+            <button class="bg-primary text-on-primary h-11 px-6 rounded-xl text-label-md active:scale-95 transition-transform shadow-sm flex items-center gap-2 confirm-btn">
+              <span>Confirm</span>
+              <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
